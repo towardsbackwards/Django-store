@@ -1,0 +1,250 @@
+{% extends "base.html" %} {% load static %} {% block title %} Interior. Products. {% endblock %} {% block body %}
+
+<body>
+    <div class="container">
+        <div class="slider1">
+                <div class="wrapper">
+                    <input type="radio" name="point" id="slide1" checked>
+                    <input type="radio" name="point" id="slide2">
+                    <input type="radio" name="point" id="slide3">
+                    <input type="radio" name="point" id="slide4">
+                    <input type="radio" name="point" id="slide5">
+                    <div class="slider">
+                        {% for item in slider_product %}
+                        <div class="{{item.slideclass}}">
+                            <div style="{{item.divstyle}}" class="text">
+                                <h3>{{item.h3text}}</h3>
+                                <h2>{{item.h2text}}</h2>
+                                <p style="">{{item.ptext}}</p>
+                                <!-- ДА, тут не те ключи продуктов, видимо совпадение в базе идёт. Позже создам единую
+                                 базу продуктов - все будут в All, и экземпляры оттуда буду в слайды затаскивать, думаю так-->
+                                <a href="{% url 'basket:add' item.pk %}" class="buy">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+                            </div>
+                            <img src="{{item.image.url}}" alt="Very good product" class="sliding_image">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="controls">
+                        <label for="slide1"></label>
+                        <label for="slide2"></label>
+                        <label for="slide3"></label>
+                        <label for="slide4"></label>
+                        <label for="slide5"></label>
+                    </div>
+                </div>
+            {% endblock %}
+
+
+
+            {% block menu_and_logo_index %}
+            <div class="padding_side_top">
+
+                {% include "inc/menu_top.html" %} {% endblock %} {% block index_slider %}
+            </div>
+            <!-- {{ data.posts.0.title }} - json пример вывода -->
+        </div>
+        {% endblock %}
+
+        <!-- КОНЕЦ СЛАЙДЕРА -->
+        {% block underslide_space %}
+        <div class="underslide_space">
+            <ul class="featured_new_menu">
+                <li><a class="featured_menu_active" href="#">Featured</a></li>
+                <li><a href="#">New</a></li>
+            </ul>
+            <a href="{% url 'main:index' %}" class="explore_all">EXPLORE ALL <img style="height: 13px; width: 16px" src="{% static 'Right_arrow_buy.png' %}" alt=""></a>
+        </div>
+        {% endblock %} {% block featured_products %}
+        <div class="product_images padding_side">
+            <div class="product">
+                <img src="{% static 'img/product-1.jpg' %}" alt="product-1">
+                <div class="product-info">
+                    <a class="round_button" href="#">&gt;</a>
+                    <h3>Fishnet Chair</h3>
+                    <p>Seat and back with upholstery made of&nbsp;cold cure foam</p>
+                </div>
+            </div>
+            <div class="product">
+                <img src="{% static 'img/product-2.jpg' %}" alt="product-2">
+                <div class="product-info">
+                    <a class="round_button" href="#">&gt;</a>
+                    <h3>Fishnet Chair</h3>
+                    <p>Seat and back with upholstery made of&nbsp;cold cure foam</p>
+                </div>
+            </div>
+            <div class="product">
+                <img src="{% static 'img/product-3.jpg' %}" alt="product-3">
+                <div class="product-info">
+                    <a class="round_button" href="#">&gt;</a>
+                    <h3>Fishnet Chair</h3>
+                    <p>Seat and back with upholstery made of&nbsp;cold cure foam</p>
+                </div>
+            </div>
+            <div class="product">
+                <img src="{% static 'img/product-4.jpg' %}" alt="product-4">
+                <div class="product-info">
+                    <a class="round_button" href="#">&gt;</a>
+                    <h3>Fishnet Chair</h3>
+                    <p>Seat and back with upholstery made of&nbsp;cold cure foam</p>
+                </div>
+            </div>
+        </div>
+        {% endblock %} {% block big_products %}
+        <div class="big_product_images">
+            <div class="big_image">
+                <img src="{% static 'img/promo-img1.jpg' %}" alt="">
+                <h3 class="exclusive_text">exclusive</h3>
+                <p class="big_name">Fishnet Chair</p>
+                <p class="exclusive_description">Seat and back with upholstery made of&nbsp;cold cure foam. Steel frame, available in&nbsp;matt</p>
+                <a href="{% url 'main:index' %}" class="buy_bottom">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+            </div>
+            <div class="big_image">
+                <img src="{% static 'img/promo-img.jpg' %}" alt="">
+                <h3 class="exclusive_text">exclusive</h3>
+                <p class="big_name">Fishnet Chair</p>
+                <p class="exclusive_description">Seat and back with upholstery made of&nbsp;cold cure foam. Steel frame, available in&nbsp;matt</p>
+                <a href="{% url 'main:index' %}" class="buy_bottom">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+            </div>
+        </div>
+        {% endblock %} {% block trending_menu %}
+        <div class="underslide_space">
+            <ul class="featured_new_menu">
+                <li><a class="trading_products" href="#">New products</a></li>
+            </ul>
+            <a href="{% url 'main:index' %}" class="explore_all">EXPLORE ALL <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+        </div>
+        {% endblock %}
+
+        <div class="product_images padding_side">
+            {% block trending_products %}
+            <div class="product_images padding_side">
+
+                {% if trendy %} {% for item in trendy %}
+                <div class="product_m">
+                    <img src="{{ item.image.url }}" alt="{{ item.alt }}">
+                    <div class="product-m-info">
+                        <a class="round_button_m" href="#">&gt;</a>
+                        <br><br>
+                        <h3>{{ item.name }}</h3>
+                        <p><br><br><br>{{ item.description }}</p>
+                    </div>
+                </div>
+                {% endfor %} {% endif %}
+            </div>
+            {% endblock %}
+        </div>
+
+
+        {% block hot_deal_slider %}
+        <div class="slider2">
+            <div class="wrapper_hot">
+                    <input type="radio" name="point_hot" id="slide1_hot" checked>
+                    <input type="radio" name="point_hot" id="slide2_hot">
+                    <input type="radio" name="point_hot" id="slide3_hot">
+                    <input type="radio" name="point_hot" id="slide4_hot">
+                    <input type="radio" name="point_hot" id="slide5_hot">
+                    <div class="slider">
+                        {% for item in hot_product %}
+                        <div class="{{item.slideclass}}">
+                            <img src="{{item.image.url}}" style="margin: auto" alt="Very good product" class="sliding_image">
+                            <div class="text" style="margin-left:98px">
+                                <h3 style="color: #e53935">{{item.h3text}}</h3>
+                                <h2>{{item.h2text}}</h2>
+                                <p style="">{{item.ptext}}</p>
+                                <a href="#" class="buy">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+                            </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="controls">
+                        <label for="slide1_hot"></label>
+                        <label for="slide2_hot"></label>
+                        <label for="slide3_hot"></label>
+                        <label for="slide4_hot"></label>
+                        <label for="slide5_hot"></label>
+                    </div>
+                </div>
+
+        </div>
+        {% endblock %}
+        <!-- КОНЕЦ СЛАЙДЕРА -->
+        {% block exclusive %}
+        <div class="padding_side underslide_space">
+            <div class="big_left_product">
+                <img src="{% static 'img/product-1-lg.jpg' %}" alt="">
+                <h3 class="exclusive_text">exclusive</h3>
+                <p class="big_name">Fishnet Chair</p>
+                <p class="exclusive_description">Seat and back with upholstery made of&nbsp;cold cure foam. Steel frame, available in&nbsp;matt</p>
+                <a href="{% url 'main:index' %}" class="buy_bottom">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+            </div>
+            <div class="small_right_products">
+                <a href="#"><img class="product-sm" src="{% static 'img/product-2-sm.jpg' %}" alt=""></a>
+                <a href="#"><img class="product-sm" src="{% static 'img/product-3-sm.jpg' %}" alt=""></a>
+                <a href="#"><img class="product-sm" src="{% static 'img/product-4-sm.jpg' %}" alt=""></a>
+                <a href="#"><img class="product-sm" src="{% static 'img/product-5-sm.jpg' %}" alt=""></a>
+            </div>
+        </div>
+        {% endblock %} {% block find_follow_favorite %}
+        <div class="page_bottom">
+            <div class="underslide_space_ft padding_side">
+                <div class="text">
+                    <h3 style="color:#6c6c6c">MOBILE APP</h3>
+                    <h2 style="margin-left: 8px" class="footer_h2">FIND. FOLLOW. FAVORITE.
+                    </h2>
+                    <h4>Share your favorites and share your style.</h4>
+                </div>
+                <a class="appstore" href="#"><img  src="{% static 'img/appstore.jpg' %}" alt="AppStore"></a>
+                <a class="googleplay" href="#"><img  src="{% static 'img/googleplay.jpg' %}" alt="Google Play"></a>
+            </div>
+        </div>
+        {% endblock %}
+        <div class="bottom_container">
+            <div class="padding_side">
+                <div class="bottom_texts">
+                    <div class="mini_header1">
+                        <p>CONTACT US</p>
+                        <p class="contacts">
+                            132A Bridge Road Richmond VIC Australia
+                        </p>
+                        <p class="contacts">
+                            Talk to&nbsp;us on&nbsp;1300&nbsp;132 info@interior.com
+                        </p>
+                    </div>
+                    <div class="mini_header2">
+                        <p>USEFUL INFORMATION</p>
+                        <div class="useful_container">
+                            <div class="useful1">
+                                <p class="useful_info">
+                                    <a href="#">SALES TERMS</a> <br> <a href="#">CUSTOMER CARE</a> <br> <a href="#">DELIVERY</a>
+                                </p>
+                            </div>
+                            <div class="useful2">
+                                <p style="margin-left: 110px;" class="useful_info">
+                                    <a href="#">ARCHITECTS ACCOUNTS</a> <br> <a href="#">CAREERS</a> <br> <a href="#">ENCHANGES &amp;&nbsp;RETURNS</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mini_header3">
+                        <p>LET&rsquo;S STAY IN&nbsp;TOUCH!</p>
+                        <p class="stay_touch_text">
+                            Subscribe to&nbsp;know about our latest news, products and special offers just for subscribers. </p>
+                        <br>
+                        <div class="feedback">
+                            <input type="text">
+                            <form action="{% url 'main:index' %}">
+                                <button class="telegram_button" type="submit"></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+
+            <p style="text-align: center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, itaque nemo eveniet nam rerum reiciendis, quisquam dolores provident totam sed.</p>
+
+        </div>
+        {% block time %} {{ date_text }} {{ datetime }}{% endblock %}
+    </div>
+</body>

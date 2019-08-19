@@ -1,0 +1,32 @@
+<{% extends 'base.html' %}
+{% load staticfiles %}
+{% block body %}
+<p style="text-align:center;">Your INCREDIBLE avatar:</p>
+{% if user.avatar %}
+<div class="user_avatar"><img src="{{ user.avatar.url }}"></div>
+{% else %}
+<br>
+<br>
+<br>
+<p style="text-align:center;">You didn't upload avatar...</p>
+<br>
+<br>
+<br>
+{% endif %}
+{% endblock %}
+
+{% block login %}
+
+    <form class="user_edit" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+        {{ profile_form.as_p }}
+        <input class="user_edit" type="submit" value="SAVE">
+    </form>
+    <button class="back_to_index_button">
+        <a href="{% url 'main:index' %}" class="">
+            BACK TO INDEX
+        </a>
+    </button>
+
+{% endblock %}

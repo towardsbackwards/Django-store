@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block body %}
+
+<form action="{% url 'auth:login' %}" method="post">
+    {% csrf_token %} <!-- для защиты от csrf = аттак -->
+    {{ login_form.as_p }}
+    <input class="user_login" type="submit" value="LOGIN">
+</form>
+    <button class="user_register_login">
+        <a href="{% url 'auth:register' %}" class="">REGISTER NOW!</a></button>
+        <br><br><br>
+    <button class="user_register_login">
+        <a href = "{% url 'social:begin' 'vk-oauth2' %}?next=/">VK NOW!</a>
+    </button>
+<br>
+    <button class="user_register_login">
+        <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">Google sign in</a>
+    </button>
+
+</form>
+
+{% endblock %}

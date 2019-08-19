@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block login %}
+    <form class="user_register" action="{% url 'auth:register' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ register_form.as_p }}
+        <br>
+        <input class="user_register" type="submit" value="Register">
+    </form>
+{% endblock %}

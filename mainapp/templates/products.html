@@ -1,0 +1,105 @@
+{% extends "base.html" %} {% load static %} {% block title %} Interior. Products. {% endblock %}
+
+<body>
+    <div class="container">
+        {% block menu_and_logo_products %}
+        <div class="padding_side_top">
+            {% include "inc/menu_top.html" %}
+        </div>
+        <!-- {{data.comments.0.body}} - json пример вывода -->
+        {% endblock %} {% block products_menu %}
+        {% include "inc/categories_menu.html" %}
+        {% endblock %} {% block div_details %}
+
+        <!-- ПРОДУКТЫ ПО КАТЕГОРИЯМ -->
+        <br>
+            <h2 style="text-align:center">{{ category.name|title }}</h2>
+            <div class="product_images padding_side">
+                {% for product in products %}
+                <div class="product_m">
+                    <img src="{{ product.image.url }}" alt="{{ product.description }}">
+                    <div class="product-m-info">
+                        <a class="round_button_m" href="{% url 'basket:add' product.pk %}">&gt;</a>
+                        <br>
+                        <h3>{{ product.name }}</h3>
+                        <br>
+                        <p>Usual price is {{ product.price }} $</p>
+                        <p> But now is discount time! Only {{ product.discount }} $</p>
+                        <p><br><br>{{ product.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% block hot_deal %}
+
+            <div class="details-products">
+                <div class="details-slider">
+                    <div class="slider-product">
+                        <img src="{{ hot_product.image.url }}">
+                    </div>
+                    <div class="slider-control">
+                        <div class="block">
+                            <a href="#"><img src="{% static 'img/controll.jpg' %}" alt="">
+								<div class="text"></div>
+							</a>
+                        </div>
+                        <div class="block">
+                            <a href="#"><img src="{% static 'img/controll1.jpg' %}" alt="">
+								<div class="text"></div>
+							</a>
+                        </div>
+                        <div class="block">
+                            <a href="#"><img src="{% static 'img/controll2.jpg' %}" alt="">
+								<div class="text"></div>
+							</a>
+                        </div>
+                    </div>
+                </div>
+                {% if hot_product.pk %} <!-- РАЗОБРАТЬСЯ В КАКИХ СЛУЧАЯХ HOT_PRODUCT ПОЛУЧАЕТ PK, А В КАКИХ = НЕТ !-->
+                <div class="description">
+                    <h3 class="big-bold">{{ hot_product.name }}</h3>
+                    <h3 class="red">Hot deal!</h3>
+                    <p class="price"> {{ hot_product.price }} <span>$</span></p>
+                    <a href="{% url 'basket:add' hot_product.pk %}" class="red-button">
+						order us <i class="fa fa-chevron-right" aria-hidden="true"></i>
+					</a>
+                    <div class="description-text">
+                        <p>{{ hot_product.description }}</p>
+                {% endif %}  <!-- РАЗОБРАТЬСЯ В КАКИХ СЛУЧАЯХ HOT_PRODUCT ПОЛУЧАЕТ PK, А В КАКИХ = НЕТ !-->
+                    </div>
+                </div>
+
+
+            </div>
+            {% endblock %} {% block trending_menu %}
+            <div class="underslide_space">
+                <ul class="featured_new_menu">
+                    <li><a class="trading_products" href="#">New products</a></li>
+                </ul>
+                <a href="/index/" class="explore_all">EXPLORE ALL <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+            </div>
+            {% endblock %}
+            <div class="product_images padding_side">
+
+
+                <!-- БЛОК NEW PRODUCTS -->
+                {% if new_products %} {% for item in new_products %}
+                <div class="product_m">
+                    <img src="{{ item.image.url }}" alt="{{ item.alt }}">
+                    <div class="product-m-info">
+                        <a class="round_button_m" href="#">&gt;</a>
+                        <br><br>
+                        <h3>{{ item.name }}</h3>
+                        <br><br>
+                        <p>{{ item.price }} $</p>
+                        <p>{{ item.discount }} $</p>
+                        <p><br><br>{{ item.description }}</p>
+                    </div>
+                </div>
+                {% endfor %} {% endif %}
+                <!-- БЛОК TRENDING PRODUCTS -->
+            </div>
+            {% endblock %}
+            <div class="product_images padding_side">
+            </div>

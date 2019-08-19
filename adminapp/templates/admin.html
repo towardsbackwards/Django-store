@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Hellow, my friend
+    <table>
+        <tr>
+            <th>
+				Название
+            </th>
+            <th>
+				Категория
+            </th>
+            <th>
+				Изменить
+            </th>
+            <th>
+				Удалить
+            </th>
+        </tr>
+{% for item in products %}
+        <tr>
+            <td>
+                <a href="{% url 'admins:detailed' %}">
+				{{ item.name }}
+                    </a>
+            </td>
+            <td>
+				{{ item.category.name }}
+            </td>
+            <td>
+
+            </td>
+        </tr>
+{% endfor %}
+    </table>
+</body>
+</html>

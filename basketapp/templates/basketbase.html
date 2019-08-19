@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+        {% block title %}
+            {{ title|title }}
+        {% endblock %}
+    </title>
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+    {% endblock %}
+    {% block js %}
+        <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+        <script src="{% static 'js/basket_scripts.js' %}"></script>
+    {% endblock %}
+</head>
+<body>
+    <div class="padding_side">
+	<div class="basket_container">
+        <div class="your_basket_text">
+            Ваша корзина, {% if user.first_name %}{{ user.first_name|title}}{% else %} {% endif %}
+        </div>
+        {% block content %}
+        {% endblock %}
+	</div>
+    </div>
+    <div class="container">
+
+        <div class="clr"></div>
+
+<div class="bottom_container">
+    <div class="padding_side">
+        <div class="bottom_texts">
+            <div class="mini_header1">
+                <p>CONTACT US</p>
+                <p class="contacts">
+                    132A Bridge Road Richmond VIC Australia
+                </p>
+                <p class="contacts">
+                    Talk to&nbsp;us on&nbsp;1300&nbsp;132 info@interior.com
+                </p>
+            </div>
+            <div class="mini_header2">
+                <p>USEFUL INFORMATION</p>
+                <div class="useful_container">
+                    <div class="useful1">
+                        <p class="useful_info">
+                            <a href="#">SALES TERMS</a> <br> <a href="#">CUSTOMER CARE</a> <br> <a href="#">DELIVERY</a>
+                        </p>
+                    </div>
+                    <div class="useful2">
+                        <p style="margin-left: 110px;" class="useful_info">
+                            <a href="#">ARCHITECTS ACCOUNTS</a> <br> <a href="#">CAREERS</a> <br> <a href="#">ENCHANGES &amp;&nbsp;RETURNS</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="mini_header3">
+                <p>LET&rsquo;S STAY IN&nbsp;TOUCH!</p>
+                <p class="stay_touch_text">
+                    Subscribe to&nbsp;know about our latest news, products and special offers just for subscribers. </p>
+                <br>
+                <div class="feedback">
+                    <input type="text">
+                    <form action="/index/">
+                        <button class="telegram_button" type="submit"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="footer">
+            <p style="text-align: center">
+                {% block time %} {{ date_text }} {{ datetime }} {% endblock %}</p>
+        </div>
+    </div>
+</body>
+</html>

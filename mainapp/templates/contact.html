@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% load static %} {% block title %} Interior. Contacts. {% endblock %} {% block menu_and_logo_contacts %}
+<div class="padding_side_top">
+    {% include "inc/menu_top.html" %}
+</div>
+<!-- {{data.posts.0.author}} - json пример вывода -->
+
+{% endblock %} {% block locations %}
+Контекстная корзина:
+{{BasketP}}
+{{page_title}}
+<div class="location">
+    {% if contact_card %} {% for item in contact_card %}
+    <div class="location-1">
+        <i class="fa fa-map-marker fa-5x"></i>
+        <h4>{{item.city}}</h4>
+        <div class="contacts">
+            <h5>Телефон</h5>
+            <p>{{item.phone}}</p>
+        </div>
+        <div class="contacts">
+            <h5>Email</h5>
+            <p>{{item.email}}</p>
+        </div>
+        <div class="contacts">
+            <h5>Адрес</h5>
+            <p>{{item.address}}</p>
+        </div>
+    </div>
+    {% endfor %} {% else %}
+    <h2 style="line-height: 400px; text-align:center">Контактов пока нет!</h2>
+    {% endif %}
+</div>
+
+{% endblock %}
