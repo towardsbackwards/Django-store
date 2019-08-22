@@ -1,6 +1,6 @@
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.conf import settings
 from django.conf.urls import url, include
 import mainapp.views as mainapp
@@ -10,9 +10,8 @@ app_name = 'mainapp' # название для приложения mainapp
 # ссылки, которые относятся к mainapp
 
 urlpatterns = [
-    url(r'^contact/$', mainapp.contact_View, name='contact'),
-    url(r'^products/$', mainapp.products_View, name='products'),
-    url(r'^index/$', mainapp.main_View, name='index'),
-    url(r'^products/(?P<pk>\d+)/$', mainapp.products_View, name='category')
-    
+    path('contact/', mainapp.contact_View, name='contact'),
+    path('products/', mainapp.products_View, name='products'),
+    path('index/', mainapp.main_View, name='index'),
+    path(r'^products/<int:pk>/$', mainapp.products_View, name='category')
 ]
