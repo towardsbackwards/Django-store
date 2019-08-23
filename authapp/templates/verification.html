@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block body %}
+    {% if user %}
+
+<h4>Zdravstvuite, uvazhaemyi</h4>
+<br>
+<h4>User {{user.username}} approved</h4>
+<br>
+    {% else %}
+<br>
+<h4>User {{user.username}} is not approved. Get out.</h4>
+    {% endif %}
+
+    <button class="back_to_index_button">
+        <a href="{% url 'main:index' %}" class="">
+            BACK TO INDEX
+        </a>
+    </button>
+
+{% endblock %}
