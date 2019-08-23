@@ -94,10 +94,10 @@ def verify(request, email, activation_key):
             user.save()
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
-            return render(request, 'authapp/verification.html')
+            return render(request, 'verification.html')
         else:
             print(f'error activation user: {user}')
-            return render(request, 'authapp/verification.html')
+            return render(request, 'verification.html')
 
     except Exception as e:
         print(f'error activation user : {e.args}')
