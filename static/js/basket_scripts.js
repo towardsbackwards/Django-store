@@ -26,10 +26,10 @@ window.onload = function () {
     */
     
     // добавляем ajax-обработчик для обновления количества товара
-    $('.basket_list').on('change', 'input[type="number"]', function (event) {
+    $('.basket_container').on('change', 'input[type="number"]', function (event) {
 
         //console.log('Привет');
-        console.log('ONCLICK_BASKET_SCRIPTS_RUNNED');
+        console.log('ONCLICK_BASKET_SCRIPTS_RUNNING');
         var target_href = event.target;
 
         if (target_href) {
@@ -39,7 +39,7 @@ window.onload = function () {
                 // method: 'post',
                 //data: {'param': 'pampam'}
                 success: function (data) {
-                    $('.basket_list').html(data.result);
+                    $('.basket_container').html(data.result);
                     console.log('ajax done');
                 },
             });
@@ -49,9 +49,9 @@ window.onload = function () {
     });
 
 
-    $('.basket_list').on('click', '.inner_delete_button', function (event) {
+    $('.basket_container').on('click', '.inner_delete_button', function (event) {
 
-        console.log('DELETE_BASKET_SCRIPT RUNNED');
+        console.log('DELETE_BASKET_SCRIPT_RUNNING');
         var target_href = event.target;
 
         if (target_href) {
@@ -61,7 +61,7 @@ window.onload = function () {
                 // method: 'post',
                 //data: {'param': 'pampam'}
                 success: function (data) {
-                    $('.basket_list').html(data['result']);
+                    $('.basket_container').html(data['result']);
                     console.log('ajax done');
                 },
             });

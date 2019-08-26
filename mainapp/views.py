@@ -21,7 +21,7 @@ with open(path) as json_data:
     json_data.close()
 
 
-def main_View(request):
+def main_view(request):
     basket = []
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
@@ -40,7 +40,7 @@ def main_View(request):
     return render(request, 'index.html', content)
 
 
-def contact_View(request):
+def contact_view(request):
     basket = []
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
@@ -56,7 +56,7 @@ def get_hot_product():
     return random.sample(list(products), 1)[0]  # возвращает 1 случайный продукт из всех
 
 
-def products_View(request, pk=None, page=1):
+def products_view(request, pk=None, page=1):
     trendy_products = TrendyProduct.objects.all()
     title = 'продукты'
     links_menu = Category.objects.all()

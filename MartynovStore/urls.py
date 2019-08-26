@@ -13,26 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-import re
-
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.conf import settings
-from django.conf.urls import url, include
-from django.urls import path, re_path
+from django.conf.urls import include
+from django.urls import path
 
 import mainapp.views as mainapp
 
 urlpatterns = [
-    url(r'^$', mainapp.main_View),
-    url(r'^', include('mainapp.urls', namespace='main')),
-    url(r'^', include('authapp.urls', namespace='auth')),
-    url(r'^standartadmin/', admin.site.urls),
-    url(r'^basket/', include('basketapp.urls', namespace='basket')),
-    url(r'^admin/', include('adminapp.urls', namespace='admins')),
-    re_path(r'^order/', include('ordersapp.urls', namespace='ordersapp')),
-    re_path(r'^auth/verify/google/oauth2/', include("social_django.urls", namespace="social")),
-    re_path(r'^auth/verify/vk/oauth2/', include('social_django.urls', namespace='social')),
+    path('', mainapp.main_view),
+    path('', include('mainapp.urls', namespace='main')),
+    path('', include('authapp.urls', namespace='auth')),
+    path('standartadmin/', admin.site.urls),
+    path('basket/', include('basketapp.urls', namespace='basket')),
+    path('admin/', include('adminapp.urls', namespace='admins')),
+    path(r'order/', include('ordersapp.urls', namespace='ordersapp')),
+    path('auth/verify/google/oauth2/', include("social_django.urls", namespace="social")),
+    path('auth/verify/vk/oauth2/', include('social_django.urls', namespace='social')),
 
 ]
 if settings.DEBUG:
