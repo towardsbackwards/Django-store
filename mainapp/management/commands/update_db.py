@@ -14,3 +14,5 @@ class Command(BaseCommand):
             users_profile = ShopUserProfile.objects.create(user=user)
             users_profile.save()
 
+
+
