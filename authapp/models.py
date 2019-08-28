@@ -24,7 +24,7 @@ class ShopUser(AbstractUser):
 
 class ShopUserProfile(models.Model):
     MALE = 'M'
-    FEMALE = 'W'
+    FEMALE = 'F'
 
     GENDER_CHOICES = (
         (MALE, 'М'),
@@ -36,7 +36,7 @@ class ShopUserProfile(models.Model):
     aboutMe = models.TextField(verbose_name='о себе', max_length=512, blank=True)
     gender = models.CharField(verbose_name='пол', max_length=1, choices=GENDER_CHOICES, blank=True)
 
-    # КОГДА У НАС МОДЕЛЬ SHOPUSER СОХРАНЯЕТСЯ МЕТОДОМ POST - ВЫПОЛНЯЕТСЯ ЭТОТ СИГНАЛ:
+    # КОГДА У НАС МОДЕЛЬ SHOPUSER СОХРАНЯЕТСЯ МЕТОДОМ POST - ВЫПОЛНЯЕТСЯ ЭТОТ СИГНАЛ (сохраняет ShopUserProfile тоже):
     @receiver(post_save, sender=ShopUser)  # 1 - событие, инициирующее сигнал, 2 - модель, которая сгенерировала сигнал
     def create_user_profile(sender, instance, created, **kwargs):
         if created:

@@ -7,6 +7,7 @@ from authapp.models import ShopUser
 from django.conf import settings
 from django.core.mail import send_mail
 
+
 def login(request):
     if request.method == 'POST':
         # 1. получить данные которые нам отправили
@@ -16,7 +17,7 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
 
-        user = auth.authenticate(username=username, password=password) # вот она, проверка на наличие пользователя
+        user = auth.authenticate(username=username, password=password)  # вот она, проверка на наличие пользователя
         if user and user.is_active:
             auth.login(request, user)
             return HttpResponseRedirect(reverse('main:index'))
@@ -27,6 +28,7 @@ def login(request):
     else:
         form = ShopUserLoginForm()
         return render(request, 'login.html', {'login_form': form})
+
 
 def register(request):
     title = 'Registration'
@@ -49,13 +51,14 @@ def register(request):
         return render(request, 'register.html', content)
 
 
-
 def edit(request):
     return HttpResponseRedirect(reverse('main:index'))
 
+
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('main:index')) # при выходе переход на главную страницу
+    return HttpResponseRedirect(reverse('main:index'))  # при выходе переход на главную страницу
+
 
 @transaction.atomic
 def edit(request):
@@ -69,11 +72,13 @@ def edit(request):
             print()
             print("Функция вьюхи отработала сохранение пользователя и его профиля...")
             return HttpResponseRedirect(reverse('auth:edit'))
+
     else:
         edit_form = ShopUserEditForm(instance=request.user)
         profile_form = ShopUserProfileEditForm(request.POST, instance=request.user.shopuserprofile)
     content = {'title': title, 'edit_form': edit_form, 'profile_form': profile_form}
     return render(request, 'edit.html', content)
+
 
 def send_verify_mail(user):
     verify_link = reverse('auth:verify', args=[user.email, user.activation_key])
@@ -84,6 +89,7 @@ def send_verify_mail(user):
         f'по ссылке: \n{settings.DOMAIN_NAME}{verify_link}'
 
     return send_mail(title, message, settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
+
 
 def verify(request, email, activation_key):
     try:

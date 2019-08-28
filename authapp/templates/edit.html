@@ -20,7 +20,10 @@
     <form class="user_edit" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ edit_form.as_p }}
-        {{ profile_form.as_p }}
+        <!--{{ profile_form.as_p }} -->
+        <p>{{ profile_form.tagline }}</p>
+        <p>{{ profile_form.aboutMe }}</p>
+        <p>{{ profile_form.gender }}</p>
         <input class="user_edit" type="submit" value="SAVE">
     </form>
     <button class="back_to_index_button">
