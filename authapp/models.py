@@ -35,17 +35,22 @@ class ShopUserProfile(models.Model):
     tagline = models.CharField(verbose_name='теги', max_length=128, blank=True)
     aboutMe = models.TextField(verbose_name='о себе', max_length=512, blank=True)
     gender = models.CharField(verbose_name='пол', max_length=1, choices=GENDER_CHOICES, blank=True)
+    bdate = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='дата рождения', null=True, blank=True)
+    '''photo_max
+    user_ids
+    lang
+    interests'''
 
     # КОГДА У НАС МОДЕЛЬ SHOPUSER СОХРАНЯЕТСЯ МЕТОДОМ POST - ВЫПОЛНЯЕТСЯ ЭТОТ СИГНАЛ (сохраняет ShopUserProfile тоже):
     @receiver(post_save, sender=ShopUser)  # 1 - событие, инициирующее сигнал, 2 - модель, которая сгенерировала сигнал
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             ShopUserProfile.objects.create(user=instance)
+            print('В модели отработано сохранение профиля пользователя 1')
 
     @receiver(post_save, sender=ShopUser)
     def save_user_profile(sender, instance, **kwargs):
-
         instance.shopuserprofile.save()
-        print('В модели отработано сохранение профиля пользователя' )
+        print('В модели отработано сохранение профиля пользователя 2')
 # Способ сохранения профиля пользователя также можно прописать методом save в классе ShopUser (переопределение метода
 # save в модели

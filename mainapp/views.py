@@ -58,6 +58,7 @@ def get_hot_product():
 
 def products_view(request, pk=None, page=1):
     trendy_products = TrendyProduct.objects.all()
+    slider_product = TopSliderProduct.objects.all()
     title = 'продукты'
     links_menu = Category.objects.all()
     basket = []
@@ -74,7 +75,7 @@ def products_view(request, pk=None, page=1):
 
         paginator = Paginator(products, 2)
         try:
-            # получение объектов нужной сраницы
+            # получение объектов нужной страницы
             products_paginator = paginator.page(page)
         except PageNotAnInteger:
             products_paginator = paginator.page(1)
@@ -96,6 +97,7 @@ def products_view(request, pk=None, page=1):
             'new_products': trendy_products,
             'basket': basket,
             'hot_product': hot_product,
+            'slider_product': slider_product,
         }
         return render(request, 'products.html', content)
     content = {
@@ -107,5 +109,6 @@ def products_view(request, pk=None, page=1):
         'new_products': trendy_products,
         'basket': basket,
         'hot_product': hot_product,
+        'slider_product': slider_product,
     }
     return render(request, 'products.html', content)
