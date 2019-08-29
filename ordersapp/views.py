@@ -41,7 +41,7 @@ class OrderList(ListView):
 
     # Изменяем свойства класса
     # 1. имя шаблона
-    # template_name = 'templates/order_list.html'
+    template_name = 'order_list.html'
     # 2. название списка в шаблоне
     # context_object_name = 'orders'
 

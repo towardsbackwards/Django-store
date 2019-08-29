@@ -1794,3 +1794,47 @@ margin-top: 520px;
 	position: absolute;
 	width: 16px;
 }
+
+
+
+/* =================BOOTSTRAP================= */
+
+#dropdown:before {
+    content: "\f107";
+    font-family: FontAwesome;
+    margin-left: 8px;
+}
+
+#dropdown-menu {
+    position: relative;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transform: perspective(600px) rotateX(-90deg);
+    transform-origin: 0% 0%;
+    transition: .6s ease-in-out;
+    background-color: #F0F0F0;
+    list-style-type: none;
+    border: 1px solid #D3D3D3;
+}
+
+#dropdown ul a {
+    border: none;
+}
+
+.menu li:hover #dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: perspective(600px) rotateX(0deg);
+}
+
+.menu li:hover #dropdown-menu li:hover{
+    border-bottom: 1px solid black;
+    margin-top: -1px;
+}
+
+#dropdown-menu li a {
+    color: #7f7f7f;
+    line-height: 56px;
+    padding: 0px 8px;
+}
