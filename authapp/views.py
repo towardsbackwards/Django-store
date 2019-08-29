@@ -75,7 +75,7 @@ def edit(request):
 
     else:
         edit_form = ShopUserEditForm(instance=request.user)
-        profile_form = ShopUserProfileEditForm(request.POST, instance=request.user.shopuserprofile)
+        profile_form = ShopUserProfileEditForm(instance=request.user.shopuserprofile)
     content = {'title': title, 'edit_form': edit_form, 'profile_form': profile_form}
     return render(request, 'edit.html', content)
 
