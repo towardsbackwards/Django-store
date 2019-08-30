@@ -11,7 +11,7 @@
         <li id="dropdown"><a href="{% url 'auth:edit' %}">{{ user.first_name|default:'Пользователь' }}</a>
                 <ul id="dropdown-menu">
                     <li><a href="{% url 'auth:edit' %}">my&nbsp;profile</a></li>
-                    <li><a href="{% url 'ordersapp:orders_list' %}">my&nbsp;orders</a></li>
+                    <li><a href="{% url 'ordersapp:orders_list' %}">my&nbsp;order</a></li>
                 </ul>
             </li>
 {% endif %}

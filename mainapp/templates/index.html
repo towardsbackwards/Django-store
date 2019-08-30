@@ -10,8 +10,8 @@
                     <input type="radio" name="point" id="slide4">
                     <input type="radio" name="point" id="slide5">
                     <div class="slider">
-                        {% for product in products %}
-                        {% if product.isTopSlider %}
+{% for product in products %}
+{% if product.isTopSlider %}
                         <div class="slides slide{{product.SlideNo}}">
                             <div style="margin-left:100px" class="text">
                                 <h3>TRENDING</h3>
@@ -23,8 +23,8 @@
                             </div>
                             <img src="{{product.image.url}}" alt="Very good product" class="sliding_image">
                         </div>
-                        {% endif %}
-                        {% endfor %}
+{% endif %}
+{% endfor %}
                     </div>
                     <div class="controls">
                         <label for="slide1"></label>
@@ -34,21 +34,20 @@
                         <label for="slide5"></label>
                     </div>
                 </div>
-            {% endblock %}
+{% endblock %}
 
 
-
-            {% block menu_and_logo_index %}
+{% block menu_and_logo_index %}
             <div class="padding_side_top">
 
-                {% include "inc/menu_top.html" %} {% endblock %} {% block index_slider %}
+{% include "inc/menu_top.html" %} {% endblock %} {% block index_slider %}
             </div>
             <!-- {{ data.posts.0.title }} - json пример вывода -->
         </div>
-        {% endblock %}
+{% endblock %}
 
         <!-- КОНЕЦ СЛАЙДЕРА -->
-        {% block underslide_space %}
+{% block underslide_space %}
         <div class="underslide_space">
             <ul class="featured_new_menu">
                 <li><a class="featured_menu_active" href="#">Featured</a></li>
@@ -56,7 +55,7 @@
             </ul>
             <a href="{% url 'main:index' %}" class="explore_all">EXPLORE ALL <img style="height: 13px; width: 16px" src="{% static 'Right_arrow_buy.png' %}" alt=""></a>
         </div>
-        {% endblock %} {% block featured_products %}
+{% endblock %} {% block featured_products %}
         <div class="product_images padding_side">
             <div class="product">
                 <img src="{% static 'img/product-1.jpg' %}" alt="product-1">
@@ -91,7 +90,7 @@
                 </div>
             </div>
         </div>
-        {% endblock %} {% block big_products %}
+{% endblock %} {% block big_products %}
         <div class="big_product_images">
             <div class="big_image">
                 <img src="{% static 'img/promo-img1.jpg' %}" alt="">
@@ -108,36 +107,37 @@
                 <a href="{% url 'main:index' %}" class="buy_bottom">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
             </div>
         </div>
-        {% endblock %} {% block trending_menu %}
+{% endblock %} {% block trending_menu %}
         <div class="underslide_space">
             <ul class="featured_new_menu">
                 <li><a class="trading_products" href="#">New products</a></li>
             </ul>
             <a href="{% url 'main:index' %}" class="explore_all">EXPLORE ALL <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
         </div>
-        {% endblock %}
+{% endblock %}
 
         <div class="product_images padding_side">
-            {% block trending_products %}
+{% block trending_products %}
             <div class="product_images padding_side">
-
-                {% if trendy %} {% for item in trendy %}
+{% for item in products %}
+{% if item.isNew %}
                 <div class="product_m">
                     <img src="{{ item.image.url }}" alt="{{ item.alt }}">
                     <div class="product-m-info">
-                        <a class="round_button_m" href="#">&gt;</a>
+                        <a class="round_button_m" href="{% url 'basket:add' item.pk %}">&gt;</a>
                         <br><br>
                         <h3>{{ item.name }}</h3>
                         <p><br><br><br>{{ item.description }}</p>
                     </div>
                 </div>
-                {% endfor %} {% endif %}
+{% endif %}
+{% endfor %}
             </div>
             {% endblock %}
         </div>
 
 
-        {% block hot_deal_slider %}
+{% block hot_deal_slider %}
         <div class="slider2">
             <div class="wrapper_hot">
                     <input type="radio" name="point_hot" id="slide1_hot" checked>
@@ -146,7 +146,7 @@
                     <input type="radio" name="point_hot" id="slide4_hot">
                     <input type="radio" name="point_hot" id="slide5_hot">
                     <div class="slider">
-                        {% for item in hot_product %}
+{% for item in hot_product %}
                         <div class="{{item.slideclass}}">
                             <img src="{{item.image.url}}" style="margin: auto" alt="Very good product" class="sliding_image">
                             <div class="text" style="margin-left:98px">
@@ -156,7 +156,7 @@
                                 <a href="#" class="buy">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
                             </div>
                             </div>
-                        {% endfor %}
+{% endfor %}
                     </div>
                     <div class="controls">
                         <label for="slide1_hot"></label>
@@ -168,9 +168,9 @@
                 </div>
 
         </div>
-        {% endblock %}
+{% endblock %}
         <!-- КОНЕЦ СЛАЙДЕРА -->
-        {% block exclusive %}
+{% block exclusive %}
         <div class="padding_side underslide_space">
             <div class="big_left_product">
                 <img src="{% static 'img/product-1-lg.jpg' %}" alt="">
@@ -186,7 +186,7 @@
                 <a href="#"><img class="product-sm" src="{% static 'img/product-5-sm.jpg' %}" alt=""></a>
             </div>
         </div>
-        {% endblock %} {% block find_follow_favorite %}
+{% endblock %} {% block find_follow_favorite %}
         <div class="page_bottom">
             <div class="underslide_space_ft padding_side">
                 <div class="text">
@@ -199,7 +199,7 @@
                 <a class="googleplay" href="#"><img  src="{% static 'img/googleplay.jpg' %}" alt="Google Play"></a>
             </div>
         </div>
-        {% endblock %}
+{% endblock %}
         <div class="bottom_container">
             <div class="padding_side">
                 <div class="bottom_texts">
@@ -247,6 +247,6 @@
             <p style="text-align: center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, itaque nemo eveniet nam rerum reiciendis, quisquam dolores provident totam sed.</p>
 
         </div>
-        {% block time %} {{ date_text }} {{ datetime }}{% endblock %}
+{% block time %} {{ date_text }} {{ datetime }}{% endblock %}
     </div>
 </body>

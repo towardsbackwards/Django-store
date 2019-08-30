@@ -35,7 +35,8 @@ class Product(models.Model):
     SlideNo = models.PositiveIntegerField(verbose_name='Номер слайда в карусели', null=True, blank=True)
     isHot = models.BooleanField(verbose_name='Горячее предложение?', default=False)
     isNew = models.BooleanField(verbose_name='Поместить товар в раздел "новое"?', default=False)
-
+    quantity = models.PositiveIntegerField(verbose_name='Количество на складе', default=1)
+    isActive = models.BooleanField(verbose_name='Категория активна', default=True)
 
     def __str__(self):
         return self.name
