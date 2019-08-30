@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-<!-- НАЗВАНИЕ ШАБЛОНА СТРОИТСЯ КАК "НАЗВАНИЕМОДЕЛИ_LIST -->
+
 
 {% block content %}
     <div class="h2 text-center head">
@@ -42,7 +42,7 @@
         </tbody>
     </table>
     <button class="btn btn-default btn-round">
-        <a href="{% url 'main:index' %}">
+        <a href="{% url 'main' %}">
             на главную
         </a>
     </button>

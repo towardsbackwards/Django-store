@@ -2,7 +2,6 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import get_object_or_404, HttpResponseRedirect
-from django.views.generic.list import BaseListView
 
 from basketapp.models import Basket
 from ordersapp.models import Order, OrderItem
@@ -71,7 +70,7 @@ class OrderItemsCreate(CreateView):
     model = Order
     fields = []
     success_url = reverse_lazy('ordersapp:orders_list')
-    template_name = 'order_form.html'
+    # template_name = 'ordersapp/order_form_simple.html'
 
     """
     Основные методы
@@ -81,7 +80,6 @@ class OrderItemsCreate(CreateView):
     """
 
     def get_context_data(self, **kwargs):
-
         """
         Передача данных в шаблон
         :param kwargs:
