@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0J/QvtC00YLQstC10YDQttC00LXQvdC40LUg0YPRh9C10YLQvdC+0Lkg0LfQsNC/?=
+ =?utf-8?b?0LjRgdC4IE5ld191c2VyXzI4MDg=?=
+From: django@geekshop.local
+To: test@test.com
+Date: Wed, 28 Aug 2019 13:51:13 -0000
+Message-ID: <156700027324.12360.2941988934032043550@Aqua.domru>
+
+Для подтверждения учетной записи New_user_2808 на портале http://localhost:8000, перейдите по ссылке: 
+http://localhost:8000/verify/test@test.com/4e5241e23ad27861f9e778ae09579703b0c0bd68/
+-------------------------------------------------------------------------------

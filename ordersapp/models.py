@@ -18,6 +18,7 @@ from mainapp.models import Product
 
 
 class Order(models.Model):
+
     FORMING = 'FM'
     SENT_TO_PROCEED = 'STP'
     PROCEEDED = 'PRD'
