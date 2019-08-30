@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 import datetime
 import json, os
-from mainapp.models import Product, TrendyProduct, ContactCard, TopSliderProduct, Category, HotSliderProduct
+from mainapp.models import Product, TrendyProduct, ContactCard, Category, HotSliderProduct
 from basketapp.models import Basket
 from django.contrib.auth.decorators import login_required, user_passes_test
 import random
@@ -25,15 +25,15 @@ def main_view(request):
     basket = []
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
-    slider_product = TopSliderProduct.objects.all()
+    product = Product.objects.all()
     hot_product = HotSliderProduct.objects.all()
     trendy_products = TrendyProduct.objects.all()[:6]  # максимум 6 первых (чтобы не перегружать страницу)
     content = {
         'datetime': current_datetime,
         'date_text': current_date_text,
         'data': data,
+        'products': product,
         'trendy': trendy_products,
-        'slider_product': slider_product,
         'hot_product': hot_product,
         'basket': basket,
     }
@@ -58,7 +58,6 @@ def get_hot_product():
 
 def products_view(request, pk=None, page=1):
     trendy_products = TrendyProduct.objects.all()
-    slider_product = TopSliderProduct.objects.all()
     title = 'продукты'
     links_menu = Category.objects.all()
     basket = []
@@ -97,7 +96,6 @@ def products_view(request, pk=None, page=1):
             'new_products': trendy_products,
             'basket': basket,
             'hot_product': hot_product,
-            'slider_product': slider_product,
         }
         return render(request, 'products.html', content)
     content = {
@@ -109,6 +107,5 @@ def products_view(request, pk=None, page=1):
         'new_products': trendy_products,
         'basket': basket,
         'hot_product': hot_product,
-        'slider_product': slider_product,
     }
     return render(request, 'products.html', content)

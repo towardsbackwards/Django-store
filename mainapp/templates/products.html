@@ -88,7 +88,7 @@
                 <div class="product_m">
                     <img src="{{ item.image.url }}" alt="{{ item.alt }}">
                     <div class="product-m-info">
-                        <a class="round_button_m" href="#">&gt;</a>
+                        <a class="round_button_m" href="{% url 'basket:add' item.pk %}">&gt;</a>
                         <br><br>
                         <h3>{{ item.name }}</h3>
                         <br><br>

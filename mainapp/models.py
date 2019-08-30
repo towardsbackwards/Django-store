@@ -30,9 +30,11 @@ class Product(models.Model):
     # Многое к многому = в одной категори много товаров, но и один товар может быть в нескольких категориях category
     # = models.ManyToManyField(Category)
     image = models.ImageField(upload_to='products', null=True, blank=True)
-    isTrendy = models.BooleanField(default=False)
-    isTopSlider = models.BooleanField(default=False)
-    isHot = models.BooleanField(default=False)
+    isTrendy = models.BooleanField(verbose_name='Товар сейчас в тренде?', default=False)
+    isTopSlider = models.BooleanField(verbose_name='Товар должен быть в верхнем слайдере?', default=False)
+    SlideNo = models.PositiveIntegerField(verbose_name='Номер слайда в карусели', null=True, blank=True)
+    isHot = models.BooleanField(verbose_name='Горячее предложение?', default=False)
+    isNew = models.BooleanField(verbose_name='Поместить товар в раздел "новое"?', default=False)
 
 
     def __str__(self):
@@ -74,25 +76,7 @@ class ContactCard(models.Model):
         return self.name
 
 
-class TopSliderProduct(models.Model):
-    slideclass = models.CharField(max_length=155, verbose_name='Класс слайда', default='slides slide1')
-    divstyle = models.CharField(max_length=855, verbose_name='Inline-стиль', default='margin-left:100px')
-    h3text = models.CharField(max_length=255, verbose_name='Большой заголовок типа товаров', default='TRENDING')
-    h2text = models.CharField(max_length=255, verbose_name='Название товара', default='Product')
-    ptext = models.CharField(max_length=855, verbose_name='Описание товара', default='Description')
-    image = models.ImageField(verbose_name='Картинка товара', upload_to='Slider_products', null=True, blank=True)
-    alt = models.CharField(max_length=855, verbose_name='Alt текст', default='Alt text')
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
-    price = models.PositiveIntegerField(verbose_name='Цена')
-    rating = models.PositiveIntegerField(verbose_name='Рейтинг', default=1)
 
-    def __str__(self):
-        return self.slideclass
-
-    def discount(self):
-        discount = 10
-        result = round(self.price * (1 - (discount / 100)), 2)
-        return result
 
 
 class HotSliderProduct(models.Model):

@@ -10,18 +10,20 @@
                     <input type="radio" name="point" id="slide4">
                     <input type="radio" name="point" id="slide5">
                     <div class="slider">
-                        {% for slide in slider_product %}
-                        <div class="{{slide.slideclass}}">
-                            <div style="{{slide.divstyle}}" class="text">
-                                <h3>{{slide.h3text}}</h3>
-                                <h2>{{slide.h2text}}</h2>
-                                <p style="">{{slide.ptext}}</p>
+                        {% for product in products %}
+                        {% if product.isTopSlider %}
+                        <div class="slides slide{{product.SlideNo}}">
+                            <div style="margin-left:100px" class="text">
+                                <h3>TRENDING</h3>
+                                <h2>{{product.name}}</h2>
+                                <p style="">{{product.description}}</p>
                                 <!-- ДА, тут не те ключи продуктов, видимо совпадение в базе идёт. Позже создам единую
                                  базу продуктов - все будут в All, и экземпляры оттуда буду в слайды затаскивать, думаю так-->
-                                <a href="{% url 'basket:add' slide.pk %}" class="buy">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+                                <a href="{% url 'basket:add' product.pk %}" class="buy">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
                             </div>
-                            <img src="{{slide.image.url}}" alt="Very good product" class="sliding_image">
+                            <img src="{{product.image.url}}" alt="Very good product" class="sliding_image">
                         </div>
+                        {% endif %}
                         {% endfor %}
                     </div>
                     <div class="controls">
