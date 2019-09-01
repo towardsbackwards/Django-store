@@ -46,7 +46,7 @@ class Basket(models.Model):
 
     @staticmethod
     def get_product(user, product):
-        return Basket.objects.filter(user=user, product=product)    \
+        return Basket.objects.filter(user=user, product=product)
 
     @classmethod
     def get_products_quantity(cls, user):

@@ -1,21 +1,20 @@
 {% extends "base.html" %}
 {% load static %}
-{% load my_tags %}
 
 {% block content %}
-    {% include 'ordersapp/includes/inc_order_summary.html' %}
+    {% include 'includes/inc_order_summary.html' %}
     <div class="basket_list">
         {% for item in object.orderitems.select_related %}
             <div class="basket_record">
-                <img src="{{ item.product.image|media_folder_products }}" alt="{{ item.product.short_desc }}">
-                <span class="category_name">{{ item.product.category.name }}</span>
-                <span class="product_name">{{ item.product.name }}</span>
-                <span class="product_price">{{ item.product.price }}&nbspруб</span>
-                <span class="product_quantitiy">x {{ item.quantity }} шт.</span>
-                <span class="product_cost"> = {{ item.get_product_cost }}&nbspруб</span>
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.short_desc }}">
+                <div class="category_name">{{ item.product.category.name }}</div>
+                <div class="product_name">{{ item.product.name }}</div>
+                <div class="product_price">{{ item.product.price }}&nbspруб</div>
+                <div class="product_quantitiy">x {{ item.quantity }} шт.</div>
+                <div class="product_cost"> = {{ item.get_product_cost }}&nbspруб</div>
             </div>
         {% endfor %}
     </div>
-    {% include 'ordersapp/includes/inc_order_actions.html' %}
+    {% include 'includes/inc_order_actions.html' %}
 
 {% endblock %}

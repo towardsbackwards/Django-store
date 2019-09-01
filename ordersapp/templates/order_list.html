@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 <!-- НАЗВАНИЕ ШАБЛОНА СТРОИТСЯ КАК "НАЗВАНИЕМОДЕЛИ_LIST -->
 
 {% block content %}
@@ -24,16 +24,16 @@
                     <td>{{ item.updated|date:"Y-m-d H:i:s" }}</td>
                     <td>{{ item.get_status_display }}</td>
                     <td>
-                        <a href="{% url 'ordersapp:order_read' item.pk %}">посмотреть</a>
+                        <a href="{% url 'order:order_read' item.pk %}">посмотреть</a>
                     </td>
                     <td>
                         {% if item.status == 'FM' %}
-                            <a href="{% url 'ordersapp:order_update' item.pk %}">редактировать</a>
+                            <a href="{% url 'order:order_update' item.pk %}">редактировать</a>
                         {% endif %}
                     </td>
                     <td>
                         {% if item.status == 'FM' %}
-                            <a href="{% url 'ordersapp:order_delete' item.pk %}">удалить</a>
+                            <a href="{% url 'order:order_delete' item.pk %}">удалить</a>
                         {% endif %}
                     </td>
                 </tr>
@@ -47,7 +47,7 @@
         </a>
     </button>
     <button class="btn btn-default btn-round">
-        <a href="{% url 'ordersapp:order_create' %}">
+        <a href="{% url 'order:order_create' %}">
             новый
         </a>
     </button>

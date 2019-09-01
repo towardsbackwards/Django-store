@@ -20,7 +20,13 @@
     <br>
     <br>
     <br>
-        <div class="go_index_from_basket" >
+            <div class="order_create">
+        <a href="{% url 'ordersapp:order_create' %}">
+            создать заказ
+        </a>
+
+    </div>
+                <div class="go_index_from_basket" >
         <a href="{% url 'main:index' %}">
             на главную
         </a>

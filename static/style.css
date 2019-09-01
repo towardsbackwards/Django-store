@@ -1209,11 +1209,57 @@ button.inner_delete_button:hover {
     margin:auto;
 }
 
-
-
 .go_index_from_basket:hover {
     background-color: #C0E9FF;
-    background: linear-gradient(crimson, gold, yellowgreen, teal, crimson);
+    background: linear-gradient( #ebf8e1, #A9A9A9, #ebf8e1, #B0E0E6, #ebf8e1);
+    background-position: 0 0;
+    border-radius: 30px;
+    animation: background 4s infinite alternate;
+    transition: all 0.5s;
+}
+
+.go_index_from_basket a {
+    display: block;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+.order_create {
+    background: none;
+    background: #c2c2c2;
+    border-radius: 20px;
+    text-transform: uppercase;
+    background-color: #ffffff;
+    color: #212121;
+    box-shadow: 0px 2px 4.85px 0.15px rgba(33, 33, 33, 0.35);
+    width: 500px;
+    height: 45px;
+    border-radius: 22.5px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 46px;
+    margin-bottom:30px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.order_create a {
+    text-decoration:none;
+}
+
+.order_create a:visited {
+    color: black;
+}
+
+.order_create:hover {
+    background-color: #C0E9FF;
+    background: linear-gradient(0.5turn, #3f87a6, #ebf8e1, #f69d3c, #ebf8e1, #3f87a6);
     background-position: 0 0;
     border-radius: 30px;
     animation: background 4s infinite alternate;

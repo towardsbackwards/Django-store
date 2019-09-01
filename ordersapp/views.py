@@ -87,7 +87,7 @@ class OrderItemsCreate(CreateView):
         :param kwargs:
         :return:
         """
-        # Получаем словарь по умолчаню
+        # Получаем словарь по умолчанию
         data = super(OrderItemsCreate, self).get_context_data(**kwargs)
         # Создаем нужный набор форм
         OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=2)
@@ -142,7 +142,7 @@ class OrderItemsCreate(CreateView):
 
 class OrderRead(DetailView):
     model = Order
-
+    template_name = 'order_detail.html'
     def get_context_data(self, **kwargs):
         context = super(OrderRead, self).get_context_data(**kwargs)
         context['title'] = 'заказ/просмотр'
@@ -164,9 +164,10 @@ class OrderRead(DetailView):
 
 
 class OrderItemsUpdate(UpdateView):
+    template_name = 'order_form.html'
     model = Order
     fields = []
-    success_url = reverse_lazy('ordersapp:orders_list')
+    success_url = reverse_lazy('order:orders_list')
 
     def get_context_data(self, **kwargs):
         data = super(OrderItemsUpdate, self).get_context_data(**kwargs)
@@ -196,7 +197,8 @@ class OrderItemsUpdate(UpdateView):
 
 class OrderDelete(DeleteView):
     model = Order
-    success_url = reverse_lazy('ordersapp:orders_list')
+    template_name = 'order_confirm_delete.html'
+    success_url = reverse_lazy('order:orders_list')
 
 
 def order_forming_complete(request, pk):
@@ -204,5 +206,5 @@ def order_forming_complete(request, pk):
     order.status = Order.SENT_TO_PROCEED
     order.save()
 
-    return HttpResponseRedirect(reverse('ordersapp:orders_list'))
+    return HttpResponseRedirect(reverse('order:orders_list'))
 
