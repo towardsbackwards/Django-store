@@ -32,8 +32,10 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products', null=True, blank=True)
     isTrendy = models.BooleanField(verbose_name='Товар сейчас в тренде?', default=False)
     isTopSlider = models.BooleanField(verbose_name='Товар должен быть в верхнем слайдере?', default=False)
-    SlideNo = models.PositiveIntegerField(verbose_name='Номер слайда в карусели', null=True, blank=True)
+    SlideNo = models.PositiveIntegerField(verbose_name='Номер слайда в карусели верхнего слайдера', null=True, blank=True)
     isHot = models.BooleanField(verbose_name='Горячее предложение?', default=False)
+    imageHot = models.ImageField(verbose_name='Картинка должна быть 1366х800 px', upload_to='products_hot', null=True, blank=True)
+    SlideHotNo = models.PositiveIntegerField(verbose_name='Номер слайда в карусели "HOT"', null=True, blank=True)
     isNew = models.BooleanField(verbose_name='Поместить товар в раздел "новое"?', default=False)
     quantity = models.PositiveIntegerField(verbose_name='Количество на складе', default=1)
     isActive = models.BooleanField(verbose_name='Категория активна', default=True)
@@ -76,29 +78,6 @@ class ContactCard(models.Model):
     def __str__(self):
         return self.name
 
-
-
-
-
-class HotSliderProduct(models.Model):
-    slideclass = models.CharField(max_length=155, verbose_name='Класс слайда', default='slides_hot slide1_hot')
-    divstyle = models.CharField(max_length=855, verbose_name='Inline-стиль', default='margin: auto')
-    h3text = models.CharField(max_length=255, verbose_name='Большой заголовок типа товаров', default='HOT DEAL')
-    h2text = models.CharField(max_length=255, verbose_name='Название товара', default='Product')
-    ptext = models.CharField(max_length=855, verbose_name='Описание товара', default='Description')
-    image = models.ImageField(verbose_name='Картинка товара', upload_to='Slider_products', null=True, blank=True)
-    alt = models.CharField(max_length=855, verbose_name='Alt текст', default='Alt text')
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
-    price = models.PositiveIntegerField(verbose_name='Цена')
-    rating = models.PositiveIntegerField(verbose_name='Рейтинг', default=1)
-
-    def __str__(self):
-        return self.slideclass
-
-    def discount(self):
-        discount = 10
-        result = self.price * (1 - (discount / 100))
-        return result
     # # число
     # n = models.IntegerField(max_length = 5, unique = True)
     # # float

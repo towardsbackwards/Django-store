@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 import datetime
 import json, os
-from mainapp.models import Product, TrendyProduct, ContactCard, Category, HotSliderProduct
+from mainapp.models import Product, TrendyProduct, ContactCard, Category
 from basketapp.models import Basket
 from django.contrib.auth.decorators import login_required, user_passes_test
 import random
@@ -26,7 +26,6 @@ def main_view(request):
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
     product = Product.objects.all()
-    hot_product = HotSliderProduct.objects.all()
     trendy_products = TrendyProduct.objects.all()[:6]  # максимум 6 первых (чтобы не перегружать страницу)
     content = {
         'datetime': current_datetime,
@@ -34,7 +33,6 @@ def main_view(request):
         'data': data,
         'products': product,
         'trendy': trendy_products,
-        'hot_product': hot_product,
         'basket': basket,
     }
     return render(request, 'index.html', content)

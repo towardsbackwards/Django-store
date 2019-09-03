@@ -146,16 +146,18 @@
                     <input type="radio" name="point_hot" id="slide4_hot">
                     <input type="radio" name="point_hot" id="slide5_hot">
                     <div class="slider">
-{% for item in hot_product %}
-                        <div class="{{item.slideclass}}">
-                            <img src="{{item.image.url}}" style="margin: auto" alt="Very good product" class="sliding_image">
+{% for item in products %}
+{% if item.isHot %}
+                        <div class="slides_hot slide{{item.SlideHotNo}}_hot">
+                            <img src="/media/{{item.imageHot}}" style="margin: auto" alt="Very good product" class="sliding_image">
                             <div class="text" style="margin-left:98px">
-                                <h3 style="color: #e53935">{{item.h3text}}</h3>
-                                <h2>{{item.h2text}}</h2>
-                                <p style="">{{item.ptext}}</p>
+                                <h3 style="color: #e53935">Hot deal! Only {{item.price}}$ today!</h3>
+                                <h2>{{item.name}}</h2>
+                                <p style="">{{item.description}}</p>
                                 <a href="#" class="buy">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
                             </div>
                             </div>
+{% endif %}
 {% endfor %}
                     </div>
                     <div class="controls">
