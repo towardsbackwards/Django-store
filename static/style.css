@@ -1282,12 +1282,16 @@ button.inner_delete_button:hover {
 }
 
 .basket_container {
+    font-family: "Montserrat";
     background-color: #f7f7f7;
     width: 1366px;
     margin: auto;
+    display: block;
+    overflow: auto;
 }
 
 .basket_product_text {
+    font-family: "Montserrat";
     display: flex;
     justify-content: space-between;
     margin-top: 100px;

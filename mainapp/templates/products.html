@@ -16,16 +16,16 @@
             <h2 style="text-align:center">{{ category.name|title }}</h2>
             <div class="product_images padding_side">
                 {% for product in products %}
-                <div class="product_m">
+                <div class="product_m" style="line-height: 16px">
                     <img src="{{ product.image.url }}" alt="{{ product.description }}">
-                    <div class="product-m-info">
+                    <div class="product-m-info" >
                         <a class="round_button_m" href="{% url 'basket:add' product.pk %}">&gt;</a>
-                        <br>
                         <h3>{{ product.name }}</h3>
-                        <br>
                         <p>Usual price is {{ product.price }} $</p>
                         <p> But now is discount time! Only {{ product.discount }} $</p>
                         <p><br><br>{{ product.description }}</p>
+                        <p>На складе: {{ product.quantity }}</p>
+
                     </div>
                 </div>
                 {% endfor %}
@@ -86,16 +86,17 @@
                 <!-- БЛОК NEW PRODUCTS -->
                 {% if new_products %} {% for item in new_products %}
 
-                <div class="product_m">
+                <div class="product_m" style="line-height:16px">
                     <img src="{{ item.image.url }}" alt="{{ item.alt }}">
                     <div class="product-m-info">
                         <a class="round_button_m" href="{% url 'basket:add' item.pk %}">&gt;</a>
-                        <br><br>
+
                         <h3>{{ item.name }}</h3>
-                        <br><br>
-                        <p>{{ item.price }} $</p>
-                        <p>{{ item.discount }} $</p>
+
+                        <p>Старая цена: {{ item.price }} $</p>
+                        <p>НоВаЯ цЕнА: {{ item.discount }} $</p>
                         <p><br><br>{{ item.description }}</p>
+                        <p>На складе: {{ item.quantity }}</p>
                     </div>
                 </div>
                 {% endfor %} {% endif %}
