@@ -3,11 +3,20 @@ from django.conf import settings
 from mainapp.models import Product
 
 
+class BasketQuerySet(models.QuerySet):
+    def delete(self, *args, **kwargs):
+        for object in self:
+            object.product.quantity += object.quantity
+            object.product.save()
+        super(BasketQuerySet, self).delete(*args, **kwargs)
+
+
 class Basket(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="baskets")
     product = models.ForeignKey(Product, on_delete=models.CASCADE) # означает, что проще объединить продукты, чем бить по моделям в корзине
     quantity = models.PositiveIntegerField(verbose_name='количество', default=0)
     add_datetime = models.DateTimeField(verbose_name='время добавления', auto_now_add=True)
+    objects = BasketQuerySet.as_manager()
 
     def _get_product_cost(self):
         "return cost of all products this type"
@@ -55,3 +64,7 @@ class Basket(models.Model):
         [basket_items_dic.update({item.product: item.quantity}) for item in basket_items]
 
         return basket_items_dic
+
+    @staticmethod
+    def get_item(pk):
+        return Basket.objects.filter(pk=pk).first()
