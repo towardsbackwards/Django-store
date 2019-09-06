@@ -1,4 +1,5 @@
-import os
-from MartynovStore.settings import SOCIAL_AUTH_VK_OAUTH2_KEY, SOCIAL_AUTH_VK_OAUTH2_KEY_SECRET
-os.system("say 'captcha captcha captcha, solve captcha, solve it, solve it now'")
-print(SOCIAL_AUTH_VK_OAUTH2_KEY, SOCIAL_AUTH_VK_OAUTH2_KEY_SECRET)
+import random
+
+basket = [0,1,2,3,4,5,6,7,8,9]
+
+new = zip(basket)

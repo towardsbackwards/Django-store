@@ -10,8 +10,8 @@
 {% if user.is_authenticated %}
         <li id="dropdown"><a href="{% url 'auth:edit' %}">{{ user.first_name|default:'Пользователь' }}</a>
                 <ul id="dropdown-menu">
-                    <li><a href="{% url 'auth:edit' %}">my&nbsp;profile</a></li>
-                    <li><a href="{% url 'ordersapp:orders_list' %}">my&nbsp;order</a></li>
+                    <li><a href="{% url 'auth:edit' %}">Мой профиль</a></li>
+                    <li><a href="{% url 'ordersapp:orders_list' %}">Мой заказ</a></li>
                 </ul>
             </li>
 {% endif %}
@@ -30,7 +30,24 @@
         {% endif %}
     </li>
         <li><a href="{% url 'basket:view' %}"><img src="{% static 'img/basket.png' %}" width="20"
-   height="20" alt="Пример"></a></li>
-        <li>{% if basket %} {{ basket|length }} types for {{ basket.0.total_cost }} $ ({{ basket.0.total_quantity }} pcs) {% endif %}</li>
-    </ul>
+   height="20" alt="Пример"></a> {% if basket %} {{ basket|length }} типов на {{ basket.0.total_cost }} руб ({{ basket.0.total_quantity }} всего) {% endif %}
+            <ul id="dropdown-menu">
+
+<table class="context_basket_table" align="left">
+    <tr ><th colspan="4">Товары в корзине:</th></tr>
+    <tr>
+        <th>&nbsp&nbsp&nbsp&nbspКатегория&nbsp&nbsp&nbsp&nbsp</th>
+        <th>&nbsp&nbsp&nbsp&nbspНаименование&nbsp&nbsp&nbsp&nbsp</th>
+        <th>&nbsp&nbsp&nbsp&nbspСтоимость&nbsp&nbsp&nbsp&nbsp</th>
+        <th>&nbsp&nbsp&nbsp&nbspКоличество&nbsp&nbsp&nbsp&nbsp</th>
+    </tr>
+{% for item in BasketP %}
+    <tr>
+        <td>{{item.0}}</td>
+        <td>{{item.1}}</td>
+        <td>{{item.2}}</td>
+        <td>{{item.3}}</td>
+    </tr>
+    {% endfor %}
+</table>
 </div>

@@ -39,13 +39,10 @@ def main_view(request):
 
 
 def contact_view(request):
-    basket = []
-    if request.user.is_authenticated:
-        basket = Basket.objects.filter(user=request.user)
     contact_cards = ContactCard.objects.all()
     return render(request, 'contact.html',
                   {'contact_card': contact_cards, 'datetime': current_datetime, 'date_text': current_date_text,
-                   'data': data, 'basket': basket})
+                   'data': data})
 
 
 def get_hot_product():
@@ -58,7 +55,6 @@ def products_view(request, pk=None, page=1):
     trendy_products = TrendyProduct.objects.all()
     title = 'продукты'
     links_menu = Category.objects.all()
-    basket = []
     hot_product = get_hot_product()  # ТОТ самый рандомайзер
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)

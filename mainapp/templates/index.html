@@ -19,7 +19,7 @@
                                 <p style="">{{product.description}}</p>
                                 <!-- ДА, тут не те ключи продуктов, видимо совпадение в базе идёт. Позже создам единую
                                  базу продуктов - все будут в All, и экземпляры оттуда буду в слайды затаскивать, думаю так-->
-                                <a href="{% url 'basket:add' product.pk %}" class="buy">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+                                <a href="{% url 'basket:add' product.pk %}" class="buy">ORDER US <img style="height: 14px; width: 16px; margin-bottom: 3px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
                             </div>
                             <img src="{{product.image.url}}" alt="Very good product" class="sliding_image">
                         </div>
@@ -53,7 +53,7 @@
                 <li><a class="featured_menu_active" href="#">Featured</a></li>
                 <li><a href="#">New</a></li>
             </ul>
-            <a href="{% url 'main:index' %}" class="explore_all">EXPLORE ALL <img style="height: 13px; width: 16px" src="{% static 'Right_arrow_buy.png' %}" alt=""></a>
+            <a href="{% url 'main:index' %}" class="explore_all">EXPLORE ALL <img style="height: 14px; width: 16px; margin-bottom: 3px" src="{% static 'Right_arrow_buy.png' %}" alt=""></a>
         </div>
 {% endblock %} {% block featured_products %}
         <div class="product_images padding_side">
@@ -97,14 +97,14 @@
                 <h3 class="exclusive_text">exclusive</h3>
                 <p class="big_name">Fishnet Chair</p>
                 <p class="exclusive_description">Seat and back with upholstery made of&nbsp;cold cure foam. Steel frame, available in&nbsp;matt</p>
-                <a href="{% url 'main:index' %}" class="buy_bottom">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+                <a href="{% url 'main:index' %}" class="buy_bottom">ORDER US <img style="height: 14px; width: 16px; margin-bottom: 3px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
             </div>
             <div class="big_image">
                 <img src="{% static 'img/promo-img.jpg' %}" alt="">
                 <h3 class="exclusive_text">exclusive</h3>
                 <p class="big_name">Fishnet Chair</p>
                 <p class="exclusive_description">Seat and back with upholstery made of&nbsp;cold cure foam. Steel frame, available in&nbsp;matt</p>
-                <a href="{% url 'main:index' %}" class="buy_bottom">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+                <a href="{% url 'main:index' %}" class="buy_bottom">ORDER US <img style="height: 14px; width: 16px; margin-bottom: 3px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
             </div>
         </div>
 {% endblock %} {% block trending_menu %}
@@ -112,7 +112,7 @@
             <ul class="featured_new_menu">
                 <li><a class="trading_products" href="#">New products</a></li>
             </ul>
-            <a href="{% url 'main:index' %}" class="explore_all">EXPLORE ALL <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+            <a href="{% url 'main:index' %}" class="explore_all">EXPLORE ALL <img style="height: 14px; width: 16px; margin-bottom: 3px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
         </div>
 {% endblock %}
 
@@ -154,7 +154,7 @@
                                 <h3 style="color: #e53935">Hot deal! Only {{item.price}}$ today!</h3>
                                 <h2>{{item.name}}</h2>
                                 <p style="">{{item.description}}</p>
-                                <a href="#" class="buy">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+                                <a href="#" class="buy">ORDER US <img style="height: 14px; width: 16px; margin-bottom: 3px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
                             </div>
                             </div>
 {% endif %}
@@ -179,7 +179,7 @@
                 <h3 class="exclusive_text">exclusive</h3>
                 <p class="big_name">Fishnet Chair</p>
                 <p class="exclusive_description">Seat and back with upholstery made of&nbsp;cold cure foam. Steel frame, available in&nbsp;matt</p>
-                <a href="{% url 'main:index' %}" class="buy_bottom">ORDER US <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
+                <a href="{% url 'main:index' %}" class="buy_bottom">ORDER US <img style="height: 14px; width: 16px; margin-bottom: 3px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
             </div>
             <div class="small_right_products">
                 <a href="#"><img class="product-sm" src="{% static 'img/product-2-sm.jpg' %}" alt=""></a>

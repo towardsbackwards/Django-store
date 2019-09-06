@@ -3,6 +3,7 @@
     list-style-type: none;
     display: flex;
     padding-top: 57px;
+    z-index: 999;
 }
 
 .menu a {
@@ -83,6 +84,26 @@ h4 {
     position: relative;
     padding-left: auto;
     padding-right: auto;
+    margin-bottom: -80px;
+}
+
+.context_basket_table {
+    position: relative;
+    display: inline-block;
+    margin-left: -300px;
+    background-color:#f0f0f0;
+    opacity: .7;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #8c8c8c;
+}
+
+.context_basket_table tr, td {
+    text-align: center;
+}
+
+.context_basket_table tr th {
+    text-align: center;
 }
 
 .container {
@@ -164,14 +185,14 @@ vertical-align: middle;
 .header {
     display: flex;
     justify-content: space-around;
+
 }
 
 .logo {
-    margin-top: 63px;
+    margin-top: 15px;
+    margin-left: 10px;
     height: 22px;
 }
-
-
 
 
 .navdots a {
@@ -741,13 +762,6 @@ button.telegram_button {
     background: url(img/plane.svg) no-repeat top;
 }
 
-
-
-
-
-
-
-
 .footer {
     background-color: #f7f7f7;
     width: 1366px;
@@ -766,6 +780,7 @@ button.telegram_button {
     display: flex;
     justify-content: space-between;
     vertical-align: middle;
+    z-index: 0;
 }
 
 .links-menu {
@@ -1885,6 +1900,8 @@ margin-top: 520px;
 
 #dropdown-menu li a {
     color: #7f7f7f;
-    line-height: 56px;
+
     padding: 0px 8px;
 }
+
+
