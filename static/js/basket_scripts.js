@@ -40,6 +40,7 @@ window.onload = function () {
                 //data: {'param': 'pampam'}
                 success: function (data) {
                     $('.basket_container').html(data.result);
+
                     console.log('ajax done');
                 },
             });

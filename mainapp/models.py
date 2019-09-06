@@ -40,6 +40,10 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField(verbose_name='Количество на складе', default=1)
     isActive = models.BooleanField(verbose_name='Категория активна', default=True)
 
+    @staticmethod #  статический метод - метод, к которому можно обращаться не через экземпляр класса, а через сам класс
+    def get_items():
+        return Product.objects.filter(isActive = True).order_by('category', 'name')
+
     def __str__(self):
         return self.name
 

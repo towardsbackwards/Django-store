@@ -20,10 +20,12 @@
 </head>
 <body>
     <div class="padding_side">
-	<div class="basket_container"> <!-- Слетал AJAX (был неверно указан DOM-элемент (класс стиля) Исправлено на ".basket_container" -->
-        <div class="your_basket_text">
+                <div class="your_basket_text">
             Ваша корзина, {% if user.first_name %}{{ user.first_name|title}}{% else %} {% endif %}
         </div>
+	<div class="basket_container"> <!-- Слетал AJAX (был неверно указан DOM-элемент (класс стиля) Исправлено на ".basket_container" -->
+
+
         {% block content %}
 
         {% endblock %}

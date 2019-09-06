@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -5,6 +6,7 @@ from django.shortcuts import get_object_or_404, HttpResponseRedirect
 from django.views.generic.list import BaseListView
 
 from basketapp.models import Basket
+from mainapp.models import Product
 from ordersapp.models import Order, OrderItem
 
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
@@ -14,6 +16,9 @@ from django.db import transaction
 
 from ordersapp.forms import OrderItemForm
 from django.forms import inlineformset_factory
+
+from django.dispatch import receiver
+from django.db.models.signals import pre_save, pre_delete
 
 
 class OrderList(ListView):
@@ -144,6 +149,7 @@ class OrderItemsCreate(CreateView):
 class OrderRead(DetailView):
     model = Order
     template_name = 'order_detail.html'
+
     def get_context_data(self, **kwargs):
         context = super(OrderRead, self).get_context_data(**kwargs)
         context['title'] = 'заказ/просмотр'
@@ -214,3 +220,29 @@ def order_forming_complete(request, pk):
 
     return HttpResponseRedirect(reverse('order:orders_list'))
 
+
+@receiver(pre_save, sender=OrderItem)
+@receiver(pre_save, sender=Basket)
+def product_quantity_update_save(sender, update_fields, instance, **kwargs):
+    if update_fields is 'quantity' or 'product':
+        if instance.pk:
+            instance.product.quantity -= instance.quantity - \
+                                         sender.get_item(instance.pk).quantity
+    else:
+        instance.product.quantity -= instance.quantity
+        instance.product.save()
+
+
+@receiver(pre_delete, sender=OrderItem)
+@receiver(pre_delete, sender=Basket)
+def product_quantity_update_delete(sender, instance, **kwargs):
+    instance.product.quantity += instance.quantity
+    instance.product.save()
+
+def get_product_price(request, pk):
+    if request.is_ajax():
+        product = Product.objects.filter(pk=int(pk)).first()
+        if product:
+            return JsonResponse({'price': product.price})
+        else:
+            return JsonResponse({'price':0})
