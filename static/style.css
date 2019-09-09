@@ -3,7 +3,6 @@
     list-style-type: none;
     display: flex;
     padding-top: 57px;
-    z-index: 999;
 }
 
 .menu a {
@@ -13,6 +12,10 @@
     font-size: 14px;
     font-weight: 300;
     text-decoration: none;
+}
+
+.menu :hover {
+    z-index:999;
 }
 
 /* vvv ОБНУЛЯЕМ ОТСТУПЫ vvv */
@@ -88,14 +91,15 @@ h4 {
 }
 
 .context_basket_table {
-    position: relative;
-    display: inline-block;
-    margin-left: -300px;
+    position: absolute;
+    display: inline;
+    margin-left: -170px;
     background-color:#f0f0f0;
-    opacity: .7;
+    opacity: .85;
     border-style: solid;
     border-width: 1px 1px 1px 1px;
     border-color: #8c8c8c;
+    font-size: 12px;
 }
 
 .context_basket_table tr, td {
@@ -1320,12 +1324,17 @@ button.inner_delete_button:hover {
 }
 
 .your_basket_text {
+    font-family: "Montserrat";
+    font-size: 40px;
     text-align: center;
     padding-top: 40px;
     font-size: 20px;
     text-transform: uppercase;
-    font-weight: 500
+    font-weight: 200
+}
 
+.product_name {
+    font-family: "Montserrat";
 }
 
 .number_field_basket {
@@ -1864,6 +1873,8 @@ margin-top: 520px;
 
 /* =================BOOTSTRAP================= */
 
+
+
 #dropdown:before {
     content: "\f107";
     font-family: FontAwesome;
@@ -1887,6 +1898,10 @@ margin-top: 520px;
     border: none;
 }
 
+#dropdown li {
+    padding-top: 0px;
+}
+
 .menu li:hover #dropdown-menu {
     visibility: visible;
     opacity: 1;
@@ -1900,8 +1915,66 @@ margin-top: 520px;
 
 #dropdown-menu li a {
     color: #7f7f7f;
-
+    font-size: 12px;
     padding: 0px 8px;
 }
 
+.dropdown_profile_picks {
+    margin-left: -40px;
+    position: absolute;
+}
 
+
+.user_record {
+    justify-content: space-between;
+    width: 650px;
+    height: 300px;
+    border: 1px solid #9c9c9c;
+    margin: 70px 25px 50px 100px;
+    float: left;
+}
+
+.user_role  {
+    display: block;
+    margin-left: 200px;
+}
+
+.user_name {
+    display: block;
+    margin-left: 200px;
+}
+
+.user_age {
+    display: block;
+    margin-left: 200px;
+}
+
+.user_email {
+    display: block;
+    margin-left: 200px;
+}
+
+.user_lastlogin {
+    display: block;
+    margin-left: 200px;
+}
+
+.user_pic {
+    margin-top: 20px;
+    margin-left: 20px;
+    max-height:200px;
+    max-weight: 200px;
+    float: left;
+}
+
+.no_avatar {
+    height: 200px;
+    weight: 200px;
+    padding-top: 100px;
+    padding-left: 30px;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    float: left:
+}
