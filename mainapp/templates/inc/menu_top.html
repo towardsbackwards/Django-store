@@ -9,7 +9,7 @@
         <li><a href="{% url 'main:contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active_menu{% endif %}">contact</a></li>
 {% if user.is_authenticated %}
         <li id="dropdown"><a href="{% url 'auth:edit' %}">{{ user.first_name|default:'Пользователь' }}</a>
-                <ul id="dropdown-menu">
+                <ul id="dropdown-menu" class="dropdown_profile_picks">
                     <li><a href="{% url 'auth:edit' %}">Мой профиль</a></li>
                     <li><a href="{% url 'ordersapp:orders_list' %}">Мой заказ</a></li>
                 </ul>
@@ -17,7 +17,7 @@
 {% endif %}
 {% if user.is_superuser %}
         <li>
-            <a href="{% url 'adminapp:table' %}">админка</a>
+            <a href="{% url 'adminapp:users' %}">админка</a>
         </li>
 {% endif %}
     <li>
