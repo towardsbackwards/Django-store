@@ -7,11 +7,11 @@
         {% for item in object.orderitems.select_related %}
             <div class="basket_record">
                 <img src="{{ item.product.image.url }}" alt="{{ item.product.short_desc }}">
-                <div class="category_name">{{ item.product.category.name }}</div>
-                <div class="product_name">{{ item.product.name }}</div>
-                <div class="product_price">{{ item.product.price }}&nbspруб</div>
-                <div class="product_quantitiy">x {{ item.quantity }} шт.</div>
-                <div class="product_cost"> = {{ item.get_product_cost }}&nbspруб</div>
+                <div style="margin: 20px;" class="category_name">{{ item.product.category.name }}</div>
+                <div style="margin: 20px;" class="product_name">{{ item.product.name }}</div>
+                <div style="margin: 20px;" class="product_price">{{ item.product.price }}&nbspруб</div>
+                <div style="margin: 20px;" class="product_quantitiy">x {{ item.quantity }} шт.</div>
+                <div style="margin: 20px;" class="product_cost"> = {{ item.get_product_cost }}&nbspруб</div>
             </div>
         {% endfor %}
     </div>
