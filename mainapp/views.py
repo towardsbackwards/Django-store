@@ -60,11 +60,11 @@ def products_view(request, pk=None, page=1):
         basket = Basket.objects.filter(user=request.user)
     if pk:
         if pk == '0':
-            products = Product.objects.all().order_by('price')
+            products = Product.objects.all().order_by('price')[:6]
             category = {'name': 'All'}
         else:
             category = get_object_or_404(Category, pk=pk)
-            products = Product.objects.filter(category__pk=pk).order_by('price')
+            products = Product.objects.filter(category__pk=pk).order_by('price')[:6]
 
         paginator = Paginator(products, 2)
         try:
