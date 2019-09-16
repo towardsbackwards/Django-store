@@ -11,7 +11,7 @@ def basketProc(request):
     item4 = []
 
     if request.user.is_authenticated:
-        basket_items = Basket.objects.filter(user=request.user)
+        basket_items = Basket.objects.filter(user=request.user).select_related('user', 'product').select_related('product')
         if basket_items:                                                        #  basket_items = QuerySet
             for i in basket_items:
                 item1.append(i.product.category.name)

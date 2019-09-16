@@ -25,8 +25,8 @@ def main_view(request):
     basket = []
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
-    product = Product.objects.all()
-    trendy_products = TrendyProduct.objects.all()[:6]  # максимум 6 первых (чтобы не перегружать страницу)
+    product = Product.objects.all().select_related('category')
+    trendy_products = TrendyProduct.objects.all().select_related('category')[:6]  # максимум 6 первых (чтобы не перегружать страницу)
     content = {
         'datetime': current_datetime,
         'date_text': current_date_text,

@@ -84,7 +84,8 @@
 
 
                 <!-- БЛОК NEW PRODUCTS -->
-                {% if new_products %} {% for item in new_products %}
+                {% for item in products %}
+                {% if item.isNew %}
 
                 <div class="product_m" style="line-height:16px">
                     <img src="{{ item.image.url }}" alt="{{ item.alt }}">
@@ -99,7 +100,8 @@
                         <p>На складе: {{ item.quantity }}</p>
                     </div>
                 </div>
-                {% endfor %} {% endif %}
+                {% endif %}
+                {% endfor %}
                 <!-- БЛОК NEW PRODUCTS -->
             </div>
             {% endblock %}

@@ -134,7 +134,7 @@ def products(request, pk):
         'objects': products_list,
     }
     
-    return render(request, 'products.html', content)
+    return render(request, 'products_admin.html', content)
 
 
 class ProductDetailView(DetailView):
