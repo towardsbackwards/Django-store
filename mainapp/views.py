@@ -75,7 +75,7 @@ def get_product(pk):
         return get_object_or_404(Product, pk=pk)
 
 
-def get_products_orederd_by_price():
+def get_products_ordered_by_price():
     if settings.LOW_CACHE:
         key = 'products_ordere  d_by_price'
         products = cache.get(key)
@@ -87,9 +87,9 @@ def get_products_orederd_by_price():
         return Product.objects.filter(isActive=True).order_by('price')
 
 
-def get_products_in_category_orederd_by_price(pk):
+def get_products_in_category_ordered_by_price(pk):
     if settings.LOW_CACHE:
-        key = f'products_in_category_orederd_by_price_{pk}'
+        key = f'products_in_category_ordered_by_price_{pk}'
         products = cache.get(key)
         if products is None:
             products = Product.objects.filter(category__pk=pk, isActive=True). \
@@ -107,14 +107,13 @@ def main_view(request):
     basket = []
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
-    product = Product.objects.all().select_related('category')
-    trendy_products = TrendyProduct.objects.all().select_related('category')[
-                      :6]  # максимум 6 первых (чтобы не перегружать страницу)
+    products = Product.objects.all().select_related('category')
+    trendy_products = TrendyProduct.objects.all().select_related('category')[:6]  # максимум 6 первых (чтобы не перегружать страницу)
     content = {
         'datetime': current_datetime,
         'date_text': current_date_text,
         'data': data,
-        'products': product,
+        'products': products,
         'trendy': trendy_products,
         'basket': basket,
     }
@@ -130,24 +129,30 @@ def contact_view(request):
 
 def get_hot_product():
     products = Product.objects.filter(isActive=True)[:6]  # ограничение для количества Trendy на странице (6)
+    return products
 
-    return random.sample(list(products), 1)[0]  # возвращает 1 случайный продукт из всех
+def get_new_product():
+    new_product = Product.objects.filter(isNew=True)[:6]
+    return new_product
 
 
-@cache_page(3600)
+
+#@cache_page(3600)  # также замораживает Горячее предложение на 3600 сек
 def products_view(request, pk=None, page=1):
-    trendy_products = TrendyProduct.objects.all()
+    new_products = get_new_product()
+    basket = []
+    products = Product.objects.all().select_related('category')[:9]
     title = 'продукты'
-    links_menu = Category.objects.all
-    hot_product = get_hot_product()  # ТОТ самый рандомайзер
+    links_menu = get_links_menu()
+    hot_product = random.sample(list(Product.objects.filter(isActive=True)), 1)[0]  # ТОТ самый рандомайзер
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
     if pk:
-        if pk == '0':
+        if pk is None:
             products = Product.objects.all().order_by('price')
             category = {'name': 'All'}
         else:
-            category = get_category(pk)
+            category = get_object_or_404(Category, pk=pk)
             products = Product.objects.filter(category__pk=pk).order_by('price')[:6]
 
         paginator = Paginator(products, 2)
@@ -160,9 +165,6 @@ def products_view(request, pk=None, page=1):
             # последняя страница
             products_paginator = paginator.page(paginator.num_pages)
 
-        print(type(products))
-        print(type(products_paginator))
-        print(len(list(products)))
         content = {
             'title': title,
             'links_menu': links_menu,
@@ -171,9 +173,10 @@ def products_view(request, pk=None, page=1):
             'datetime': current_datetime,
             'date_text': current_date_text,
             'data': data,  # JSON
-            'new_products': trendy_products,
+            'new_products': new_products,
             'basket': basket,
             'hot_product': hot_product,
+            'pk': pk,
         }
         return render(request, 'products.html', content)
     content = {
@@ -182,7 +185,8 @@ def products_view(request, pk=None, page=1):
         'datetime': current_datetime,
         'date_text': current_date_text,
         'data': data,  # JSON
-        'new_products': trendy_products,
+        'products': products,
+        'new_products': new_products,
         'basket': basket,
         'hot_product': hot_product,
     }

@@ -1,18 +1,19 @@
 {% extends "base.html" %} {% load static %} {% block title %} Interior. Products. {% endblock %}
 
 <body>
-    <div class="container">
-        {% block menu_and_logo_products %}
-        <div class="padding_side_top">
-            {% include "inc/menu_top.html" %}
-        </div>
-        <!-- {{data.comments.0.body}} - json пример вывода -->
-        {% endblock %} {% block products_menu %}
+{% block menu_and_logo_products %}
+<div class="padding_side_top">
+        {% include "inc/menu_top.html" %}
+</div>
+{% endblock %}
+
+
+ <!-- {{ data.posts.0.title }} - json пример вывода -->
+ {% block products_menu %}
         {% include "inc/categories_menu.html" %}
         {% endblock %} {% block div_details %}
 
         <!-- ПРОДУКТЫ ПО КАТЕГОРИЯМ -->
-        <br>
             <h2 style="text-align:center">{{ category.name|title }}</h2>
             <div class="product_images padding_side">
                 {% for product in products %}
@@ -25,7 +26,7 @@
                         <p> But now is discount time! Only {{ product.discount }} $</p>
                         <p><br><br>{{ product.description }}</p>
                         <p>На складе: {{ product.quantity }}</p>
-
+                        <p>pk is {{ pk }}</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -79,31 +80,27 @@
                 </ul>
                 <a href="/index/" class="explore_all">EXPLORE ALL <img style="height: 13px; width: 16px" src="{% static 'img/Right_arrow_buy.png' %}" alt=""></a>
             </div>
-            {% endblock %}
+
             <div class="product_images padding_side">
 
 
                 <!-- БЛОК NEW PRODUCTS -->
-                {% for item in products %}
-                {% if item.isNew %}
-
-                <div class="product_m" style="line-height:16px">
+{% for item in new_products %}
+                <div class="product_m">
                     <img src="{{ item.image.url }}" alt="{{ item.alt }}">
                     <div class="product-m-info">
-                        <a class="round_button_m" href="{% url 'basket:add' item.pk %}">&gt;</a>
-
+                        <a class="round_button_m" href="#">&gt;</a>
+                        <br><br>
                         <h3>{{ item.name }}</h3>
 
-                        <p>Старая цена: {{ item.price }} $</p>
-                        <p>НоВаЯ цЕнА: {{ item.discount }} $</p>
-                        <p><br><br>{{ item.description }}</p>
-                        <p>На складе: {{ item.quantity }}</p>
+                        <p>{{ item.price }} $</p>
+                        <p>{{ item.discount }} $</p>
+                        <p>{{ item.description }}</p>
                     </div>
                 </div>
-                {% endif %}
-                {% endfor %}
+ {% endfor %}
                 <!-- БЛОК NEW PRODUCTS -->
             </div>
             {% endblock %}
             <div class="product_images padding_side">
-            </div>
+            </div>{% endblock %}
