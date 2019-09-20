@@ -137,7 +137,7 @@ STATIC_URL = '/static/'  # папка, в которой будет произв
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Всё, что раздается по адресу выше (/static/) - будет искаться в
 # этой директории
-
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -229,7 +229,7 @@ if DEBUG:
     ]
 
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 
 if os.name == 'posix':

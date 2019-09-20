@@ -9,6 +9,7 @@ def basketProc(request):
     item2 = []
     item3 = []
     item4 = []
+    newbasket = []
 
     if request.user.is_authenticated:
         basket_items = Basket.objects.filter(user=request.user).select_related('user', 'product').select_related('product')
